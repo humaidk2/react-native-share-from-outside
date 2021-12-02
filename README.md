@@ -2,6 +2,32 @@
 
 [![npm version](https://badge.fury.io/js/react-native-share-menu.svg)](https://www.npmjs.com/package/react-native-share-menu)
 
+I used react native share menu for my own project, and i found it lacking and hard to integrate.
+
+The biggest problem was the lack of support for sharing from whatsapp/telegram.
+
+Sharing multiple items.
+
+Sharing some data between the share extension and the main app
+
+Sharing some secrets between the share extension and the main app
+
+New share intent suggestions.
+
+Share extension on ios needs at least needs to be handled natively because it has a 120MB limit and running js using react native
+takes about 50MB, leaving about half to work with.
+
+I think share extension should be responsible to store the data using something like mmkv or optionally upload it to the cloud
+and if you need access to it, you have to load the data in on startup or synchronize the data in a service.
+
+This should be the default behaviour on ios and android
+
+I also think the uploading part can be integrated to the share extension but that should be kinda optional.
+
+Only after completing the above features, will this project be released on npm
+
+If you would like to help build the above, please contact me
+
 Add your app as a target for sharing from other apps and write iOS Share Extensions in React Native.
 
 ## Installation
