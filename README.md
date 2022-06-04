@@ -1,6 +1,54 @@
 # react-native-share-menu
 
-[![npm version](https://badge.fury.io/js/react-native-share-menu.svg)](https://www.npmjs.com/package/react-native-share-menu)
+## MMKV
+
+- Input
+  - sendUrl, this is a url where the uploaded file/s or text and the select contact will be sent
+  - contacts, each contact will compose of avatarURL, name, and id
+  - UploadURL , this is where the files will be uploaded
+- Output
+  - Selected contact/s id
+
+## Keychain
+
+Keychain will be used to share tokens from app to share extension
+
+## Uploader
+
+This will take the image/s or video/s or file/s and upload it to generate a storedURL.
+Uploading should happen in background service. An ios library could help with this
+
+## Share Intent/suggestion - onSend
+
+A native module that gives access to js method onSend which should be called to store the contact info to be displayed in suggestions.
+
+## Tasks:
+
+- [x] Setup react native project with redux
+
+### iOS
+
+#### Example Project:
+
+- [x] Setup ios Share extension
+- [x] Setup ios groups
+- [x] Setup react native project with redux
+- [x] Setup to read data from mmkv
+- [] Setup to read encrypted data from mmkv
+- [] Setup to uploader to upload any file type and get back url
+- [] Setup a different mmkv store that will not use redux-persist
+- [] Setup Keychain to share tokens
+- [] Add instructions to use keychain
+- [] Setup native module methods for suggestions
+- [] Store data back in to mmkv store
+
+### Other
+
+- [] Extract files to npm module
+- [] Update instructions
+- [] Test with whatsapp/telegram
+
+## Reasoning
 
 I used react native share menu for my own project, and i found it lacking and hard to integrate.
 
@@ -22,7 +70,7 @@ and if you need access to it, you have to load the data in on startup or synchro
 
 This should be the default behaviour on ios and android
 
-I also think the uploading part can be integrated to the share extension but that should be kinda optional.
+I also think the uploading part can be integrated to the share extension.
 
 Only after completing the above features, will this project be released on npm
 
@@ -44,14 +92,6 @@ At the command line, in the ios directory:
 pod install
 ```
 
-### Manual Linking (React Native 0.36+)
-
-At the command line, in the project directory:
-
-```bash
-react-native link
-```
-
 ## [Android Instructions](ANDROID_INSTRUCTIONS.md)
 
 ## [iOS Instructions](IOS_INSTRUCTIONS.md)
@@ -61,151 +101,6 @@ react-native link
 ## [API Docs](API_DOCS.md)
 
 ## [Example Project](example/)
-
-### Example Usage
-
-```javascript
-import React, { useState, useEffect, useCallback } from "react";
-import { AppRegistry, Text, View, Image, Button } from "react-native";
-import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
-
-type SharedItem = {
-  mimeType: string,
-  data: string,
-  extraData: any,
-};
-
-const Test = () => {
-  const [sharedData, setSharedData] = useState(null);
-  const [sharedMimeType, setSharedMimeType] = useState(null);
-
-  const handleShare = useCallback((item: ?SharedItem) => {
-    if (!item) {
-      return;
-    }
-
-    const { mimeType, data, extraData } = item;
-
-    setSharedData(data);
-    setSharedMimeType(mimeType);
-    // You can receive extra data from your custom Share View
-    console.log(extraData);
-  }, []);
-
-  useEffect(() => {
-    ShareMenu.getInitialShare(handleShare);
-  }, []);
-
-  useEffect(() => {
-    const listener = ShareMenu.addNewShareListener(handleShare);
-
-    return () => {
-      listener.remove();
-    };
-  }, []);
-
-  if (!sharedMimeType && !sharedData) {
-    // The user hasn't shared anything yet
-    return null;
-  }
-
-  if (sharedMimeType === "text/plain") {
-    // The user shared text
-    return <Text>Shared text: {sharedData}</Text>;
-  }
-
-  if (sharedMimeType.startsWith("image/")) {
-    // The user shared an image
-    return (
-      <View>
-        <Text>Shared image:</Text>
-        <Image source={{ uri: sharedData }} />
-      </View>
-    );
-  }
-
-  // The user shared a file in general
-  return (
-    <View>
-      <Text>Shared mime type: {sharedMimeType}</Text>
-      <Text>Shared file location: {sharedData}</Text>
-    </View>
-  );
-};
-
-const Share = () => {
-  const [sharedData, setSharedData] = useState("");
-  const [sharedMimeType, setSharedMimeType] = useState("");
-
-  useEffect(() => {
-    ShareMenuReactView.data().then(({ mimeType, data }) => {
-      setSharedData(data);
-      setSharedMimeType(mimeType);
-    });
-  }, []);
-
-  return (
-    <View>
-      <Button
-        title="Dismiss"
-        onPress={() => {
-          ShareMenuReactView.dismissExtension();
-        }}
-      />
-      <Button
-        title="Send"
-        onPress={() => {
-          // Share something before dismissing
-          ShareMenuReactView.dismissExtension();
-        }}
-      />
-      <Button
-        title="Dismiss with Error"
-        onPress={() => {
-          ShareMenuReactView.dismissExtension("Something went wrong!");
-        }}
-      />
-      <Button
-        title="Continue In App"
-        onPress={() => {
-          ShareMenuReactView.continueInApp();
-        }}
-      />
-      <Button
-        title="Continue In App With Extra Data"
-        onPress={() => {
-          ShareMenuReactView.continueInApp({ hello: "from the other side" });
-        }}
-      />
-      {sharedMimeType === "text/plain" && <Text>{sharedData}</Text>}
-      {sharedMimeType.startsWith("image/") && (
-        <Image source={{ uri: sharedData }} />
-      )}
-    </View>
-  );
-};
-
-AppRegistry.registerComponent("Test", () => Test);
-AppRegistry.registerComponent("ShareMenuModuleComponent", () => Share);
-```
-
-Or check the "example" directory for an example application.
-
-## How it looks
-
-### Android
-
-<img src="screenshots/android-menu.png" width="47%"> <img src="screenshots/android-app.png" width="47%">
-
-### iOS
-
-<img src="screenshots/ios-share-view.gif" width="47%">
-
-## Releasing a new version
-
-`$ npm version <minor|major|patch> && npm publish`
-
-## Credits
 
 Sponsored and developed by [Meedan](http://meedan.com).
 
