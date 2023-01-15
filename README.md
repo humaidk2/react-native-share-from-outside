@@ -34,7 +34,7 @@ A native module that gives access to js method onSend which should be called to 
 - [x] Setup ios groups
 - [x] Setup react native project with redux
 - [x] Setup to read data from mmkv
-- [] Setup to read encrypted data from mmkv
+- [x] Setup to read encrypted data from mmkv
 - [] Setup to uploader to upload any file type and get back url
 - [] Setup a different mmkv store that will not use redux-persist
 - [] Setup Keychain to share tokens

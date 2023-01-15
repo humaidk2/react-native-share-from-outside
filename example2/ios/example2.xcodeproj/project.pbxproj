@@ -15,6 +15,7 @@
 		28253AB22843C5B100C02FB0 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28253AB12843C5B100C02FB0 /* ShareViewController.swift */; };
 		28253AB52843C5B100C02FB0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28253AB32843C5B100C02FB0 /* MainInterface.storyboard */; };
 		28253AB92843C5B100C02FB0 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 28253AAF2843C5B100C02FB0 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		287A713F29745AF700AFB1D9 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287A713E29745AF700AFB1D9 /* Keychain.swift */; };
 		7699B88040F8A987B510C191 /* libPods-example2-example2Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-example2-example2Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9DB7E144643597C2B2A11062 /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CF776AB2B4BC5EB5356328 /* libPods-ShareExtension.a */; };
@@ -67,6 +68,7 @@
 		28253AB12843C5B100C02FB0 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		28253AB42843C5B100C02FB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		28253AB62843C5B100C02FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		287A713E29745AF700AFB1D9 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		28A9C7512846712000D1CFC9 /* example2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = example2.entitlements; path = example2/example2.entitlements; sourceTree = "<group>"; };
 		28A9C752284673C200D1CFC9 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		28A9C75328468B3E00D1CFC9 /* ShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				28A9C752284673C200D1CFC9 /* ShareExtension.entitlements */,
 				28253AB12843C5B100C02FB0 /* ShareViewController.swift */,
+				287A713E29745AF700AFB1D9 /* Keychain.swift */,
 				28A9C75328468B3E00D1CFC9 /* ShareExtension-Bridging-Header.h */,
 				28253AB32843C5B100C02FB0 /* MainInterface.storyboard */,
 				28253AB62843C5B100C02FB0 /* Info.plist */,
@@ -554,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28253AB22843C5B100C02FB0 /* ShareViewController.swift in Sources */,
+				287A713F29745AF700AFB1D9 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

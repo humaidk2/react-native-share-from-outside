@@ -17,8 +17,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 const storage = new MMKVLoader()
+  .withEncryption()
   .withInstanceID('storage')
   .setProcessingMode(MMKV.MODES.MULTI_PROCESS)
   .initialize();

@@ -6,5 +6,9 @@
 	<array>
 		<string>group.org.humaidk2.example.example2</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)org.humaidk2.example.example2</string>
+	</array>
 </dict>
 </plist>
